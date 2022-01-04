@@ -1,9 +1,12 @@
 package com.example.myapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+import android.util.Log;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 class MyDatabaseHelper extends SQLiteOpenHelper {
@@ -15,6 +18,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_eng = "vocabulary_eng";
     private static final String COLUMN_ch = "vocabulary_ch";
+    //private static final String COLUMN_PAGES = "book_pages";
 
     public MyDatabaseHelper(@Nullable Context context)
     {
@@ -27,8 +31,8 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     {
         String query = "CREATE TABLE " + TABLE_NAME +
                 " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_ID + " TEXT, " +
-                COLUMN_eng + " TEXT) ;";
+                COLUMN_eng + " TEXT, " +
+                COLUMN_ch + " TEXT) ;";
         db.execSQL(query);
     }
     @Override
@@ -37,4 +41,31 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+
+    void addVocabulary(String eng, String ch){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_eng, eng);
+        cv.put(COLUMN_ch, ch);
+        long result = db.insert(TABLE_NAME,null, cv);
+        if(result == -1){
+            Toast.makeText(context, "添加失敗!", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(context, "添加成功!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    Cursor readAllData(){
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
 }
