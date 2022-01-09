@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".UpdateActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".AddActivity"
-            android:label="添加單字"
-            android:parentActivityName=".MainActivity"/>
+            android:label="添加新備忘錄"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="單字本">
+            android:label="備忘錄">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
