@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,11 @@ public class UpdateActivity extends AppCompatActivity {
         delete_button = findViewById(R.id.delete_button);
         getAndSetIntentData();
 
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(eng);
+        }
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +43,13 @@ public class UpdateActivity extends AppCompatActivity {
                 eng = eng_input.getText().toString().trim();
                 ch = ch_input.getText().toString().trim();
                 myDB.updateData(id, eng, ch);
+            }
+        });
+
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmDialog();
             }
         });
 
@@ -58,4 +71,26 @@ public class UpdateActivity extends AppCompatActivity {
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
         }
     }
+
+    void confirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("刪除 " + eng + " ?");
+        builder.setMessage("確定要刪除 " + eng + " ?");
+        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
+                myDB.deleteOneRow(id);
+                finish();
+            }
+        });
+        builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.create().show();
+    }
+
 }

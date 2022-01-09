@@ -23,7 +23,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     private Activity activity;
-    private ArrayList vocabulary_id, vocabulary_eng, vocabulary_ch;
+    private ArrayList vocabulary_id, vocabulary_eng, vocabulary_ch, vocabulary_none;
+    Animation translate_anim;
 
     CustomAdapter(Activity activity, Context context, ArrayList vocabulary_id, ArrayList vocabulary_eng, ArrayList vocabulary_ch){
         this.activity = activity;
@@ -31,7 +32,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         this.vocabulary_id = vocabulary_id;
         this.vocabulary_eng = vocabulary_eng;
         this.vocabulary_ch = vocabulary_ch;
+        this.vocabulary_none = vocabulary_none;
     }
+
 
     @NonNull
     @Override
@@ -47,8 +50,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.vocabulary_id_txt.setText(String.valueOf(vocabulary_id.get(position)));
         holder.vocabulary_eng_txt.setText(String.valueOf(vocabulary_eng.get(position)));
         holder.vocabulary_ch_txt.setText(String.valueOf(vocabulary_ch.get(position)));
-        //Recyclerview onClickListener
-        /*holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, UpdateActivity.class);
@@ -57,7 +59,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("翻譯", String.valueOf(vocabulary_ch.get(position)));
                 activity.startActivityForResult(intent, 1);
             }
-        });*/
+        });
 
     }
 
@@ -78,8 +80,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             vocabulary_ch_txt = itemView.findViewById(R.id. vocabulary_ch_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
-            //Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
-            //mainLayout.setAnimation(translate_anim);
+            translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            mainLayout.setAnimation(translate_anim);
         }
     }
 

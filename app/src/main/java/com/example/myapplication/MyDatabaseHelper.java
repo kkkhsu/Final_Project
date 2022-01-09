@@ -20,7 +20,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ch = "vocabulary_ch";
     //private static final String COLUMN_PAGES = "book_pages";
 
-    public MyDatabaseHelper(@Nullable Context context)
+    MyDatabaseHelper(@Nullable Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
@@ -48,6 +48,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
 
         cv.put(COLUMN_eng, eng);
         cv.put(COLUMN_ch, ch);
+
         long result = db.insert(TABLE_NAME,null, cv);
         if(result == -1){
             Toast.makeText(context, "添加失敗!", Toast.LENGTH_SHORT).show();
@@ -67,6 +68,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
     void updateData(String row_id, String eng, String ch){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -82,4 +84,18 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    void deleteOneRow(String row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "刪除失敗!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "刪除成功!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
+    }
 }

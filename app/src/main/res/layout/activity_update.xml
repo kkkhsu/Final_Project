@@ -5,29 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddActivity"
-    android:padding="30dp">
+    android:padding="25dp">
+
+
+    <TextView
+        android:id="@+id/UpdateTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改備忘錄"
+        android:gravity="center"
+        android:textSize="35dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <EditText
         android:id="@+id/eng_input2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="25dp"
         android:ems="10"
-        android:hint="單字"
-        android:inputType="textPersonName"
+        android:hint="標題"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdateTitle"/>
 
     <EditText
         android:id="@+id/ch_input2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="25dp"
         android:ems="10"
-        android:hint="翻譯"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="top"
+        android:hint="內文"
+        android:lines="15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eng_input2" />
 
@@ -36,7 +48,6 @@
         android:id="@+id/update_button"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="40dp"
         android:text="更新單字"
         android:textAllCaps="false"
         android:textSize="20sp"
@@ -48,7 +59,7 @@
         android:id="@+id/delete_button"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="刪除單字"
         android:textAllCaps="false"
         android:textColor="@android:color/holo_red_light"
