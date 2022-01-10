@@ -82,6 +82,10 @@ public class UpdateActivity extends AppCompatActivity {
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 myDB.deleteOneRow(id);
                 finish();
+                //dfdskpfksaopfkopdksfaopjfpodsjfjsofajoidfjoisajfioajfoi
+                // jfdoisafjoidjoifasjoijfoiajfoidjaofijdifoaj
+                // fjdsoiafjoidfjaoifjoiafjos
+                // fdjoiafjdoifjoiafjoifjisjoafjasoigjaoif
             }
         });
         builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
