@@ -23,15 +23,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     private Activity activity;
-    private ArrayList vocabulary_id, vocabulary_eng, vocabulary_ch;
+    private ArrayList id, title, ch, none;
+    Animation translate_anim;
 
-    CustomAdapter(Activity activity, Context context, ArrayList vocabulary_id, ArrayList vocabulary_eng, ArrayList vocabulary_ch){
+    CustomAdapter(Activity activity, Context context, ArrayList id, ArrayList title, ArrayList ch){
         this.activity = activity;
         this.context = context;
-        this.vocabulary_id = vocabulary_id;
-        this.vocabulary_eng = vocabulary_eng;
-        this.vocabulary_ch = vocabulary_ch;
+        this.id = id;
+        this.title = title;
+        this.ch = ch;
+        this.none = none;
     }
+
 
     @NonNull
     @Override
@@ -44,42 +47,41 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.vocabulary_id_txt.setText(String.valueOf(vocabulary_id.get(position)));
-        holder.vocabulary_eng_txt.setText(String.valueOf(vocabulary_eng.get(position)));
-        holder.vocabulary_ch_txt.setText(String.valueOf(vocabulary_ch.get(position)));
-        //Recyclerview onClickListener
-        /*holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+        holder.id_txt.setText(String.valueOf(id.get(position)));
+        holder.title_txt.setText(String.valueOf(title.get(position)));
+        holder.ch_txt.setText(String.valueOf(ch.get(position)));
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(vocabulary_id.get(position)));
-                intent.putExtra("單字", String.valueOf(vocabulary_eng.get(position)));
-                intent.putExtra("翻譯", String.valueOf(vocabulary_ch.get(position)));
+                intent.putExtra("id", String.valueOf(id.get(position)));
+                intent.putExtra("標題", String.valueOf(title.get(position)));
+                intent.putExtra("備忘錄", String.valueOf(ch.get(position)));
                 activity.startActivityForResult(intent, 1);
             }
-        });*/
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return vocabulary_id.size();
+        return id.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView vocabulary_id_txt, vocabulary_eng_txt, vocabulary_ch_txt;
+        TextView id_txt, title_txt, ch_txt;
         LinearLayout mainLayout;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            vocabulary_id_txt = itemView.findViewById(R.id.vocabulary_id_txt);
-            vocabulary_eng_txt = itemView.findViewById(R.id.vocabulary_eng_txt);
-            vocabulary_ch_txt = itemView.findViewById(R.id. vocabulary_ch_txt);
+            id_txt = itemView.findViewById(R.id.id_txt);
+            title_txt = itemView.findViewById(R.id.title_txt);
+            ch_txt = itemView.findViewById(R.id. ch_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
-            //Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
-            //mainLayout.setAnimation(translate_anim);
+            translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            mainLayout.setAnimation(translate_anim);
         }
     }
 

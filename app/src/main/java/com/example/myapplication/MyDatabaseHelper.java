@@ -12,15 +12,14 @@ import androidx.annotation.Nullable;
 class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
-    private static final String DATABASE_NAME = "VocabularyBook.db";
+    private static final String DATABASE_NAME = "memo.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "my_vocabulary";
+    private static final String TABLE_NAME = "my_memo";
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_eng = "vocabulary_eng";
-    private static final String COLUMN_ch = "vocabulary_ch";
-    //private static final String COLUMN_PAGES = "book_pages";
+    private static final String COLUMN_title = "title";
+    private static final String COLUMN_ch = "ch";
 
-    public MyDatabaseHelper(@Nullable Context context)
+    MyDatabaseHelper(@Nullable Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
@@ -31,7 +30,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     {
         String query = "CREATE TABLE " + TABLE_NAME +
                 " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_eng + " TEXT, " +
+                COLUMN_title + " TEXT, " +
                 COLUMN_ch + " TEXT) ;";
         db.execSQL(query);
     }
@@ -42,12 +41,13 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addVocabulary(String eng, String ch){
+    void addMemo(String title, String ch){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_eng, eng);
+        cv.put(COLUMN_title, title);
         cv.put(COLUMN_ch, ch);
+
         long result = db.insert(TABLE_NAME,null, cv);
         if(result == -1){
             Toast.makeText(context, "添加失敗!", Toast.LENGTH_SHORT).show();
@@ -67,10 +67,11 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
-    void updateData(String row_id, String eng, String ch){
+
+    void updateData(String row_id, String title, String ch){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_eng, eng);
+        cv.put(COLUMN_title, title);
         cv.put(COLUMN_ch, ch);
 
         long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
@@ -82,4 +83,18 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    void deleteOneRow(String row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "刪除失敗!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "刪除成功!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
+    }
 }
