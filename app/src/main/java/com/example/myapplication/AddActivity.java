@@ -20,7 +20,6 @@ public class AddActivity extends AppCompatActivity {
         title_input = findViewById(R.id.title_input);
         ch_input = findViewById(R.id.ch_input);
         add_button = findViewById(R.id.add_button);
-
         add_button.setOnClickListener(new View.OnClickListener()
         {
             @Override
