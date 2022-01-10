@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddActivity"
-    android:padding="25dp">
+    android:padding="25dp"
+    android:background="#7E57C2">
 
 
     <TextView
@@ -14,19 +15,24 @@
         android:layout_height="wrap_content"
         android:text="修改備忘錄"
         android:gravity="center"
-        android:textSize="35dp"
-        android:textColor="@color/black"
+        android:textSize="28dp"
+        android:textColor="#414142"
         android:textStyle="bold"
+        android:padding="8dp"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounded_corner"
         />
 
     <EditText
-        android:id="@+id/eng_input2"
+        android:id="@+id/title_input2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="13dp"
         android:ems="10"
         android:hint="標題"
+        android:textSize="28dp"
+        android:padding="8dp"
+        android:background="@drawable/rounded_corner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdateTitle"/>
@@ -35,37 +41,43 @@
         android:id="@+id/ch_input2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:gravity="top"
         android:hint="內文"
-        android:lines="15"
+        android:lines="12"
+        android:padding="10dp"
+        android:background="@drawable/rounded_corner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eng_input2" />
+        app:layout_constraintTop_toBottomOf="@+id/title_input2" />
 
 
     <Button
         android:id="@+id/update_button"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:text="更新單字"
+        android:text="更新備忘錄"
         android:textAllCaps="false"
         android:textSize="20sp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ch_input2" />
+        app:layout_constraintTop_toBottomOf="@+id/ch_input2"
+        android:textColor="#7E57C2"
+        android:backgroundTint="@color/white"/>
 
     <Button
         android:id="@+id/delete_button"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:text="刪除單字"
+        android:layout_marginTop="1dp"
+        android:text="刪除備忘錄"
         android:textAllCaps="false"
         android:textColor="@android:color/holo_red_light"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_button" />
+        app:layout_constraintTop_toBottomOf="@+id/update_button"
+        android:backgroundTint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
