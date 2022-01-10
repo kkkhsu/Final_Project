@@ -6,27 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".AddActivity"
     android:padding="25dp"
-    >
+    android:background="#7E57C2">
 
 
     <TextView
         android:id="@+id/AddTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="添加新備忘錄"
         android:gravity="center"
-        android:textSize="35dp"
-        android:textColor="@color/black"
+        android:text="添加新備忘錄"
+        android:textSize="28dp"
+        android:textColor="#414142"
+        android:background="@drawable/rounded_corner"
         android:textStyle="bold"
+        android:padding="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        tools:ignore="MissingConstraints" />
 
 
     <EditText
-        android:id="@+id/eng_input"
+        android:id="@+id/title_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="13dp"
+        android:padding="8dp"
+        android:background="@drawable/rounded_corner"
+        android:textSize="28dp"
         android:ems="10"
         android:hint="標題"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,26 +42,31 @@
         android:id="@+id/ch_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="13dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_corner"
         android:ems="10"
         android:gravity="top"
         android:hint="內文"
-        android:lines="15"
+        android:lines="12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eng_input"
+        app:layout_constraintTop_toBottomOf="@+id/title_input"
          />
 
     <Button
         android:id="@+id/add_button"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="22dp"
         android:text="添加"
         android:textSize="20sp"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ch_input" />
+        app:layout_constraintTop_toBottomOf="@+id/ch_input"
+        android:textColor="#7E57C2"
+        android:backgroundTint="@color/white"
+        />
 
 
 

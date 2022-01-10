@@ -3,14 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/delete_all"
-        android:title="刪除備忘錄"
+        android:title="刪除全部備忘錄"
         android:icon="@drawable/ic_delete"
         app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/open_all"
-        android:icon="@drawable/ic_delete"
-        android:title="開關翻譯"
-        app:showAsAction="never" />
 
 </menu>
