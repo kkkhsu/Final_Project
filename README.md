@@ -1,3 +1,3 @@
 Vocabulary System
 HELLO
-fuck
+fuck you
