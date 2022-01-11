@@ -44,7 +44,7 @@
         android:lines="15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eng_input"
-         />
+        />
 
     <Button
         android:id="@+id/add_button"
